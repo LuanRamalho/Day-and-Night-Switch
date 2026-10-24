@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #eaf5ff;
+  transition: background .65s;
+}
+body.night {
+  background: #111c38;
+}
+.toggle {
+  position: relative;
+  width: 180px;
+  height: 88px;
+  border: 0;
+  border-radius: 100px;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(145deg, #4fb6ef, #a4dfff);
+  box-shadow: inset 0 3px 8px #0002,
+              0 14px 30px #16395825;
+  transition: background .65s;
+}
+.orb {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  z-index: 3;
+  background: linear-gradient(145deg, #fff6bb, #ffca50);
+  box-shadow: 0 0 0 7px #fff4a329,
+              0 0 22px #ffe67a;
+  transition: .65s cubic-bezier(.22, 1.2, .4, 1);
+}
+.crater {
+  position: absolute;
+  border-radius: 50%;
+  background: #b9c8e0;
+  opacity: 0;
+  transition: opacity .4s;
+}
+.crater:nth-child(1) {
+  width: 17px;
+  height: 17px;
+  top: 14px;
+  left: 15px;
+}
+.crater:nth-child(2) {
+  width: 11px;
+  height: 11px;
+  top: 37px;
+  left: 33px;
+}
+.crater:nth-child(3) {
+  width: 8px;
+  height: 8px;
+  top: 15px;
+  left: 43px;
+}
+.cloud {
+  position: absolute;
+  right: 12px;
+  bottom: 17px;
+  width: 50px;
+  height: 16px;
+  border-radius: 30px;
+  background: white;
+  box-shadow: 0 4px 10px #ffffff45;
+  transition: transform .5s, opacity .35s;
+}
+.cloud::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  bottom: 8px;
+  width: 25px;
+  height: 23px;
+  border-radius: 50%;
+  background: white;
+}
+.cloud::after {
+  content: "";
+  position: absolute;
+  right: 5px;
+  bottom: 7px;
+  width: 19px;
+  height: 17px;
+  border-radius: 50%;
+  background: white;
+}
+.cloud.small {
+  right: 27px;
+  bottom: 52px;
+  transform: scale(.55);
+  opacity: .65;
+}
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0;
+  transform: scale(.2);
+  transition: opacity .4s, transform .5s;
+}
+.s1 { top: 20px; left: 30px; }
+.s2 { top: 51px; left: 24px; }
+.s3 { top: 37px; left: 70px; }
+.s4 { top: 65px; left: 79px; }
+.toggle.active {
+  background: linear-gradient(145deg, #17244a, #405e96);
+}
+.toggle.active .orb {
+  transform: translateX(92px);
+  background: linear-gradient(145deg, #f9fcff, #cbd8ec);
+  box-shadow: 0 0 0 7px #cbdcff15,
+              0 0 22px #c7dfff75;
+}
+.toggle.active .crater {
+  opacity: 1;
+}
+.toggle.active .cloud {
+  opacity: 0;
+  transform: translateX(70px);
+}
+.toggle.active .cloud.small {
+  transform: translateX(70px) scale(.55);
+}
+.toggle.active .star {
+  opacity: 1;
+  transform: scale(1);
+}
+.toggle:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 5px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+  }
+}
